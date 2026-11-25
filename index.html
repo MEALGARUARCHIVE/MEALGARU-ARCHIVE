@@ -121,13 +121,13 @@
       gap: 6px;
     }
 
-    /* 2-1. PHOTO & PHOTO CARD 갤러리 링크 영역: 소셜 링크 밑 1열 2행 규격의 둥근 박스 (가변 축 600) */
+    /* 2-1. PHOTO & PHOTO CARD 갤러리 링크 영역: 소셜 링크 밑 1열 4행 규격의 둥근 박스 (가변 축 600) */
     .gallery-grid {
       width: 100%;
       max-width: 360px;
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(2, 46px);
+      grid-template-rows: repeat(4, 46px);
       grid-auto-rows: 46px;
       gap: 6px;
       margin-top: 10px;
@@ -190,18 +190,21 @@
     .center-section {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      height: 100%;
       padding: 0 8px;
       min-width: 0;
     }
 
     .team-history-box {
       width: 100%;
+      height: 100%;
       text-align: left;
       background-color: #fafafa;
       border: 1px solid #ededed;
       border-radius: 18px;
       padding: clamp(18px, 1.8vw, 24px);
+      display: flex;
+      flex-direction: column;
     }
 
     /* AFFILIATION 제목: 대문자 / 가변 축 700 */
@@ -221,6 +224,8 @@
       list-style: none;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
       gap: 10px;
     }
 
@@ -712,7 +717,7 @@
             <span class="team-period">(2025.08.21 ~ 2025.11.29)</span>
           </li>
           <li>
-            <span class="team-name-nowrap">ZETA DIVISION</span>
+            <span class="team-name-nowrap"> DIVISIONZETA</span>
             <span class="team-period">(2026.02.28 ~ )</span>
           </li>
         </ul>
@@ -819,13 +824,13 @@
           </div>
         </article>
 
-        <!-- 5. 2026 OWCS KOREA 스테이지 1 / ZETA DIVISION MEALGARU -->
+        <!-- 5. 2026 OWCS KOREA 스테이지 1 ★ / ZETA DIVISION MEALGARU -->
         <article class="photocard-item">
           <div class="photocard-frame">
-            <img src="./photocards/5.png" alt="2026 OWCS KOREA 스테이지 1 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+05';" />
+            <img src="./photocards/5.png" alt="2026 OWCS KOREA 스테이지 1 ★ ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+05';" />
           </div>
           <div class="photocard-info">
-            <p class="photocard-title">2026 OWCS KOREA 스테이지 1</p>
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 1<span class="photocard-star">★</span></p>
             <p class="photocard-name">ZETA DIVISION MEALGARU</p>
           </div>
         </article>
@@ -841,13 +846,13 @@
           </div>
         </article>
 
-        <!-- 7. 2026 OWCS KOREA 스테이지 2 / ZETA DIVISION MEALGARU -->
+        <!-- 7. 2026 OWCS KOREA 스테이지 2 ★ / ZETA DIVISION MEALGARU -->
         <article class="photocard-item">
           <div class="photocard-frame">
-            <img src="./photocards/7.png" alt="2026 OWCS KOREA 스테이지 2 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+07';" />
+            <img src="./photocards/7.png" alt="2026 OWCS KOREA 스테이지 2 ★ ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+07';" />
           </div>
           <div class="photocard-info">
-            <p class="photocard-title">2026 OWCS KOREA 스테이지 2</p>
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 2<span class="photocard-star">★</span></p>
             <p class="photocard-name">ZETA DIVISION MEALGARU</p>
           </div>
         </article>
@@ -863,13 +868,13 @@
           </div>
         </article>
 
-        <!-- 9. 2026 OWCS KOREA 스테이지 3 / ZETA DIVISION MEALGARU (이미지 없음) -->
+        <!-- 9. 2026 OWCS KOREA 스테이지 3 ★ / ZETA DIVISION MEALGARU (이미지 없음) -->
         <article class="photocard-item">
           <div class="photocard-frame">
             <div class="photocard-empty">이미지 없음</div>
           </div>
           <div class="photocard-info">
-            <p class="photocard-title">2026 OWCS KOREA 스테이지 3</p>
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 3<span class="photocard-star">★</span></p>
             <p class="photocard-name">ZETA DIVISION MEALGARU</p>
           </div>
         </article>
