@@ -15,7 +15,7 @@
       font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
     }
 
-    /* 1. 흰색 바탕 배경 */
+    /* 1. 흰색 바탕 배경 및 복사 방지 */
     body {
       background-color: #ffffff;
       color: #111111;
@@ -25,6 +25,11 @@
       justify-content: center;
       padding: 48px 24px;
       -webkit-font-smoothing: antialiased;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
     }
 
     /* 3단 레이아웃: 왼쪽(프로필+소셜+갤러리버튼) / 가운데(AFFILIATION 소속) / 오른쪽(2022~2026 우승 및 1-2위 경력) */
@@ -104,6 +109,7 @@
       font-variation-settings: 'wght' 800;
       color: #111111;
     }
+
     /* 1-1 ~ 1-4 소셜 링크 영역: 2열 배치 & 둥근 박스 (가변 축 600) */
     .social-grid {
       width: 100%;
@@ -217,7 +223,7 @@
       gap: 10px;
     }
 
-    /* 팀명 및 활동 기간: 색상 표기 없이 가변 축 650 */
+    /* 팀명 및 활동 기간: 색상 표기 없이 가변 축 650 (왼쪽 팀명 / 오른쪽 기간 양끝 정렬) */
     .team-list li {
       font-size: clamp(13px, 1vw, 14.5px);
       line-height: 1.45;
@@ -239,11 +245,12 @@
     }
 
     .team-period {
-      font-size: clamp(11.5px, 0.9vw, 13px);
+      font-size: clamp(12px, 0.92vw, 13.5px);
       font-weight: 650;
       font-variation-settings: 'wght' 650;
       color: #555555;
       white-space: nowrap;
+      text-align: right;
     }
 
     /* ================= RIGHT SECTION (2022~2026 우승 및 1-2위 경력) ================= */
@@ -256,58 +263,72 @@
       min-width: 0;
     }
 
+    /* AFFILIATION과 동일한 형태의 둥근 박스 */
+    .competition-history-box {
+      width: 100%;
+      text-align: left;
+      background-color: #fafafa;
+      border: 1px solid #ededed;
+      border-radius: 18px;
+      padding: clamp(18px, 1.8vw, 24px);
+    }
+
     /* COMPETITION HISTORY 제목: 대문자 / 가변 축 700 */
     .section-heading {
       font-size: clamp(16px, 1.3vw, 19px);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       font-weight: 700;
       font-variation-settings: 'wght' 700;
       color: #111111;
       margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e5e5e5;
     }
 
     .career-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 10px;
     }
 
+    /* 항목 흰색 배경 및 테두리 제거 + 배지 양끝 정렬 */
     .career-item {
-      background-color: #ffffff;
-      border: 1px solid #e5e5e5;
-      border-radius: 14px;
-      padding: 12px 16px;
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 6px 0;
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
       gap: 12px;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .career-item:hover {
-      border-color: #111111;
-      transform: translateY(-1px);
+      font-size: clamp(13px, 1vw, 14.5px);
+      line-height: 1.45;
+      font-weight: 650;
+      font-variation-settings: 'wght' 650;
+      color: #111111;
     }
 
     /* 대회명: 가변 축 650 */
     .career-title {
       font-size: clamp(13px, 1vw, 14.5px);
-      line-height: 1.4;
+      line-height: 1.45;
       font-weight: 650;
       font-variation-settings: 'wght' 650;
       color: #111111;
     }
 
-    /* 결과 배지(우승 / 1-2위): 가변 축 650 */
+    /* 결과 배지(우승 / 1-2위): 가변 축 650 + 연한 테두리 + 오른쪽 끝 정렬 */
     .career-badge {
+      display: inline-block;
       font-size: clamp(11.5px, 0.9vw, 12.5px);
       font-weight: 650;
       font-variation-settings: 'wght' 650;
       color: #111111;
-      background-color: #f2f2f2;
-      padding: 4px 10px;
+      background-color: transparent;
+      border: 1px solid #cccccc;
+      padding: 2px 9px;
       border-radius: 999px;
       white-space: nowrap;
       flex-shrink: 0;
@@ -539,7 +560,7 @@
 </head>
 <body>
   <main class="archive-container">
-    <!-- 1. 왼쪽 섹션: 프로필 + MEALGARU (900) + POSITION (700) TANK (800) + 소셜 링크 (700) + PHOTO / PHOTO CARD (700) -->
+    <!-- 1. 왼쪽 섹션: 프로필 + MEALGARU (900) + POSITION (700) TANK (800) + 소셜 링크 (600) + PHOTO / PHOTO CARD (600) -->
     <section class="left-section">
       <div class="profile-wrapper">
         <!-- 깃허브 저장소 루트에 업로드한 profile.png 파일 연결 -->
@@ -558,7 +579,7 @@
         <span class="pos-value">TANK</span>
       </p>
 
-      <!-- 1-1 ~ 1-4. 소셜 링크 (대문자 / 로고 필수 / 로고 옆 텍스트 / 가변 축 700 / 둥근 박스) -->
+      <!-- 1-1 ~ 1-4. 소셜 링크 (대문자 / 로고 필수 / 로고 옆 텍스트 / 가변 축 600 / 둥근 박스) -->
       <div class="social-grid">
         <!-- 1-1. DISCORD -->
         <a href="https://discord.com/invite/qF5ASqCtft" target="_blank" rel="noopener noreferrer" class="social-card">
@@ -664,41 +685,43 @@
 
     <!-- 3. 오른쪽 섹션: COMPETITION HISTORY (700) + 2022~2026년 '우승' 및 '1-2위' 항목 (650) -->
     <section class="right-section">
-      <h2 class="section-heading">COMPETITION HISTORY</h2>
-      <ul class="career-list">
-        <li class="career-item">
-          <span class="career-title">TEN 2022 FPS SPECIAL</span>
-          <span class="career-badge">우승</span>
-        </li>
-        <li class="career-item">
-          <span class="career-title">2023 오버워치 리그 서머 스테이지 동부 오픈</span>
-          <span class="career-badge">1-2위</span>
-        </li>
-        <li class="career-item">
-          <span class="career-title">지스타컵 2025 오버워치</span>
-          <span class="career-badge">우승</span>
-        </li>
-        <li class="career-item">
-          <span class="career-title">2025 상하이 마스터즈 이스포츠 오버워치 부문</span>
-          <span class="career-badge">우승</span>
-        </li>
-        <li class="career-item">
-          <span class="career-title">2026 OWCS 코리아 스테이지 1</span>
-          <span class="career-badge">우승</span>
-        </li>
-        <li class="career-item">
-          <span class="career-title">2026 OWCS 아시아 스테이지 1</span>
-          <span class="career-badge">우승</span>
-        </li>
-        <li class="career-item">
-          <span class="career-title">2026 OWCS 코리아 스테이지 2</span>
-          <span class="career-badge">우승</span>
-        </li>
-        <li class="career-item">
-          <span class="career-title">2026 OWCS 미드시즌 챔피언십</span>
-          <span class="career-badge">우승</span>
-        </li>
-      </ul>
+      <div class="competition-history-box">
+        <h2 class="section-heading">COMPETITION HISTORY</h2>
+        <ul class="career-list">
+          <li class="career-item">
+            <span class="career-title">TEN 2022 FPS SPECIAL</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2023 오버워치 리그 서머 스테이지 동부 오픈</span>
+            <span class="career-badge">1-2위</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">지스타컵 2025 오버워치</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2025 상하이 마스터즈 이스포츠 오버워치 부문</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2026 OWCS 코리아 스테이지 1</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2026 OWCS 아시아 스테이지 1</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2026 OWCS 코리아 스테이지 2</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2026 OWCS 미드시즌 챔피언십</span>
+            <span class="career-badge">우승</span>
+          </li>
+        </ul>
+      </div>
     </section>
   </main>
 
@@ -854,6 +877,18 @@
         window.location.href = window.location.pathname;
       }
     }
+
+    // 페이지 내 텍스트 복사, 드래그, 우클릭 및 복사 단축키 차단
+    document.addEventListener('copy', (e) => e.preventDefault());
+    document.addEventListener('cut', (e) => e.preventDefault());
+    document.addEventListener('selectstart', (e) => e.preventDefault());
+    document.addEventListener('dragstart', (e) => e.preventDefault());
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && ['c', 'x', 'a', 'u', 's'].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+    });
 
     window.addEventListener('DOMContentLoaded', renderViewByQuery);
   </script>
