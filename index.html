@@ -593,6 +593,40 @@
       background-color: #f3f3f3;
     }
 
+    /* 디스코드 포토 공사 준비 중 안내 박스 */
+    .photo-notice-box {
+      width: 100%;
+      min-height: 280px;
+      background-color: #f9f9f9;
+      border: 1.5px solid #e5e5e5;
+      border-radius: 20px;
+      padding: 48px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .photo-notice-title {
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+      color: #111111;
+    }
+
+    .photo-notice-desc {
+      font-size: 13.5px;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+      font-variation-settings: 'wght' 600;
+      color: #666666;
+    }
+
     /* ================= RESPONSIVE ================= */
     @media (max-width: 1120px) {
       .archive-container {
@@ -884,6 +918,23 @@
   </main>
 
   <!-- ================= 전용 서브 사이트 1: DISCORD PHOTO (디스코드 사진 전용) ================= -->
+  <div id="photo-page" class="subpage-overlay" aria-hidden="true">
+    <div class="subpage-inner">
+      <header class="subpage-header">
+        <div class="subpage-title-group">
+          <h2 class="subpage-title">DISCORD PHOTO</h2>
+          <span class="subpage-subtitle">MEALGARU ver.</span>
+        </div>
+        <button type="button" class="back-btn" onclick="handleBackFromSubpage()">← ARCHIVE로 돌아가기</button>
+      </header>
+
+      <div class="photo-notice-box">
+        <p class="photo-notice-title">공사 준비 중..</p>
+        <p class="photo-notice-desc">DISCORD PHOTO 페이지 업데이트를 준비하고 있습니다.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= 전용 서브 사이트 2: MEALGARU PHOTO CARD LIST (포토 카드 모음집) ================= -->
   <div id="photocard-page" class="subpage-overlay" aria-hidden="true">
     <div class="subpage-inner">
