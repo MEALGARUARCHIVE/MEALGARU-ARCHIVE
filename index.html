@@ -39,7 +39,7 @@
       display: grid;
       grid-template-columns: minmax(300px, 0.95fr) minmax(360px, 1.35fr) minmax(360px, 1.3fr);
       gap: clamp(28px, 3.2vw, 48px);
-      align-items: center;
+      align-items: stretch;
     }
 
     /* ================= LEFT SECTION ================= */
@@ -47,6 +47,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       text-align: center;
       padding-right: clamp(16px, 2vw, 28px);
       border-right: 1px solid #eeeeee;
@@ -120,13 +121,13 @@
       gap: 6px;
     }
 
-    /* 2-1. PHOTO & PHOTO CARD 갤러리 링크 영역: 소셜 링크 밑 1열 4행 규격의 둥근 박스 (가변 축 600) */
+    /* 2-1. PHOTO & PHOTO CARD 갤러리 링크 영역: 소셜 링크 밑 1열 2행 규격의 둥근 박스 (가변 축 600) */
     .gallery-grid {
       width: 100%;
       max-width: 360px;
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(4, 46px);
+      grid-template-rows: repeat(2, 46px);
       grid-auto-rows: 46px;
       gap: 6px;
       margin-top: 10px;
@@ -257,7 +258,7 @@
     .right-section {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      height: 100%;
       padding-left: clamp(16px, 2vw, 28px);
       border-left: 1px solid #eeeeee;
       min-width: 0;
@@ -266,11 +267,14 @@
     /* AFFILIATION과 동일한 형태의 둥근 박스 */
     .competition-history-box {
       width: 100%;
+      height: 100%;
       text-align: left;
       background-color: #fafafa;
       border: 1px solid #ededed;
       border-radius: 18px;
       padding: clamp(18px, 1.8vw, 24px);
+      display: flex;
+      flex-direction: column;
     }
 
     /* COMPETITION HISTORY 제목: 대문자 / 가변 축 700 */
@@ -290,6 +294,8 @@
       list-style: none;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
       gap: 10px;
     }
 
@@ -518,20 +524,43 @@
       padding: 2px 4px 4px;
     }
 
-    .photocard-name {
-      font-size: 14px;
+    /* 포토 카드 대회명 및 팀/선수명 스타일 */
+    .photocard-title {
+      font-size: 13px;
+      line-height: 1.35;
       font-weight: 800;
       font-variation-settings: 'wght' 800;
-      text-transform: uppercase;
       color: #111111;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
     }
 
-    .photocard-series {
+    .photocard-star {
+      color: #111111;
+      margin-left: 3px;
+      font-weight: 900;
+      font-variation-settings: 'wght' 900;
+    }
+
+    .photocard-name {
       font-size: 12px;
+      line-height: 1.35;
       font-weight: 650;
       font-variation-settings: 'wght' 650;
-      color: #666666;
+      text-transform: uppercase;
+      color: #555555;
+    }
+
+    .photocard-empty {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      font-variation-settings: 'wght' 700;
+      color: #777777;
+      background-color: #f3f3f3;
     }
 
     /* ================= RESPONSIVE ================= */
@@ -540,6 +569,13 @@
         grid-template-columns: 1fr;
         gap: 32px;
         max-width: 600px;
+      }
+
+      .center-section,
+      .right-section,
+      .team-history-box,
+      .competition-history-box {
+        height: auto;
       }
 
       .left-section {
@@ -726,61 +762,6 @@
   </main>
 
   <!-- ================= 전용 서브 사이트 1: DISCORD PHOTO (디스코드 사진 전용) ================= -->
-  <div id="photo-page" class="subpage-overlay" aria-hidden="true">
-    <div class="subpage-inner">
-      <header class="subpage-header">
-        <div class="subpage-title-group">
-          <h2 class="subpage-title">DISCORD PHOTO</h2>
-          <span class="subpage-subtitle">DISCORD PHOTO ARCHIVE</span>
-        </div>
-        <button type="button" class="back-btn" onclick="handleBackFromSubpage()">← ARCHIVE로 돌아가기</button>
-      </header>
-
-      <!-- 디스코드 사진을 깃허브 저장소(예: ./photos/discord-1.jpg 등)에 올린 뒤 src 경로만 연결하시면 됩니다 -->
-      <div class="photo-grid">
-        <article class="photo-card-item">
-          <div class="photo-thumb">
-            <img src="./photos/discord-1.jpg" alt="DISCORD PHOTO 01" onerror="this.onerror=null; this.src='https://placehold.co/800x600/f5f5f5/222222?text=DISCORD+PHOTO+01';" />
-          </div>
-          <div class="photo-meta">
-            <span class="photo-caption">DISCORD PHOTO #01</span>
-            <span class="photo-tag">DISCORD</span>
-          </div>
-        </article>
-
-        <article class="photo-card-item">
-          <div class="photo-thumb">
-            <img src="./photos/discord-2.jpg" alt="DISCORD PHOTO 02" onerror="this.onerror=null; this.src='https://placehold.co/800x600/f5f5f5/222222?text=DISCORD+PHOTO+02';" />
-          </div>
-          <div class="photo-meta">
-            <span class="photo-caption">DISCORD PHOTO #02</span>
-            <span class="photo-tag">DISCORD</span>
-          </div>
-        </article>
-
-        <article class="photo-card-item">
-          <div class="photo-thumb">
-            <img src="./photos/discord-3.jpg" alt="DISCORD PHOTO 03" onerror="this.onerror=null; this.src='https://placehold.co/800x600/f5f5f5/222222?text=DISCORD+PHOTO+03';" />
-          </div>
-          <div class="photo-meta">
-            <span class="photo-caption">DISCORD PHOTO #03</span>
-            <span class="photo-tag">DISCORD</span>
-          </div>
-        </article>
-
-        <article class="photo-card-item">
-          <div class="photo-thumb">
-            <img src="./photos/discord-4.jpg" alt="DISCORD PHOTO 04" onerror="this.onerror=null; this.src='https://placehold.co/800x600/f5f5f5/222222?text=DISCORD+PHOTO+04';" />
-          </div>
-          <div class="photo-meta">
-            <span class="photo-caption">DISCORD PHOTO #04</span>
-            <span class="photo-tag">DISCORD</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </div>
-
   <!-- ================= 전용 서브 사이트 2: MEALGARU PHOTO CARD LIST (포토 카드 모음집) ================= -->
   <div id="photocard-page" class="subpage-overlay" aria-hidden="true">
     <div class="subpage-inner">
@@ -792,45 +773,115 @@
         <button type="button" class="back-btn" onclick="handleBackFromSubpage()">← ARCHIVE로 돌아가기</button>
       </header>
 
-      <!-- 포토 카드 이미지를 깃허브 저장소(예: ./photocards/card-1.jpg 등)에 올린 뒤 src 경로만 연결하시면 됩니다 -->
+      <!-- 포토 카드 1~10번 목록 (9번은 이미지 없음) -->
       <div class="photocard-grid">
+        <!-- 1. 2025 OWCS KOREA 스테이지 1 / WAY MEALGARU -->
         <article class="photocard-item">
           <div class="photocard-frame">
-            <img src="./photocards/card-1.jpg" alt="MEALGARU PHOTO CARD 01" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+01';" />
+            <img src="./photocards/1.png" alt="2025 OWCS KOREA 스테이지 1 WAY MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+01';" />
           </div>
           <div class="photocard-info">
-            <p class="photocard-name">MEALGARU VER.01</p>
-            <p class="photocard-series">PHOTO CARD COLLECTION</p>
+            <p class="photocard-title">2025 OWCS KOREA 스테이지 1</p>
+            <p class="photocard-name">WAY MEALGARU</p>
           </div>
         </article>
 
+        <!-- 2. 2025 OWCS KOREA 스테이지 2 / WAY MEALGARU -->
         <article class="photocard-item">
           <div class="photocard-frame">
-            <img src="./photocards/card-2.jpg" alt="MEALGARU PHOTO CARD 02" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+02';" />
+            <img src="./photocards/2.png" alt="2025 OWCS KOREA 스테이지 2 WAY MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+02';" />
           </div>
           <div class="photocard-info">
-            <p class="photocard-name">MEALGARU VER.02</p>
-            <p class="photocard-series">PHOTO CARD COLLECTION</p>
+            <p class="photocard-title">2025 OWCS KOREA 스테이지 2</p>
+            <p class="photocard-name">WAY MEALGARU</p>
           </div>
         </article>
 
+        <!-- 3. 2025 OWCS KOREA 스테이지 3 / WAY MEALGARU -->
         <article class="photocard-item">
           <div class="photocard-frame">
-            <img src="./photocards/card-3.jpg" alt="MEALGARU PHOTO CARD 03" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+03';" />
+            <img src="./photocards/3.png" alt="2025 OWCS KOREA 스테이지 3 WAY MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+03';" />
           </div>
           <div class="photocard-info">
-            <p class="photocard-name">MEALGARU VER.03</p>
-            <p class="photocard-series">PHOTO CARD COLLECTION</p>
+            <p class="photocard-title">2025 OWCS KOREA 스테이지 3</p>
+            <p class="photocard-name">WAY MEALGARU</p>
           </div>
         </article>
 
+        <!-- 4. 2026 OWCS KOREA 스테이지 1 / ZETA DIVISION MEALGARU -->
         <article class="photocard-item">
           <div class="photocard-frame">
-            <img src="./photocards/card-4.jpg" alt="MEALGARU PHOTO CARD 04" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+04';" />
+            <img src="./photocards/4.png" alt="2026 OWCS KOREA 스테이지 1 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+04';" />
           </div>
           <div class="photocard-info">
-            <p class="photocard-name">MEALGARU VER.04</p>
-            <p class="photocard-series">PHOTO CARD COLLECTION</p>
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 1</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 5. 2026 OWCS KOREA 스테이지 1 ★ / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/5.png" alt="2026 OWCS KOREA 스테이지 1 ★ ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+05';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 1<span class="photocard-star">★</span></p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 6. 2026 OWCS KOREA 스테이지 2 / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/6.png" alt="2026 OWCS KOREA 스테이지 2 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+06';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 2</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 7. 2026 OWCS KOREA 스테이지 2 ★ / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/7.png" alt="2026 OWCS KOREA 스테이지 2 ★ ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+07';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 2<span class="photocard-star">★</span></p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 8. 2026 OWCS KOREA 스테이지 3 / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/8.png" alt="2026 OWCS KOREA 스테이지 3 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+08';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 3</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 9. 2026 OWCS KOREA 스테이지 3 ★ / ZETA DIVISION MEALGARU (이미지 없음) -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <div class="photocard-empty">이미지 없음</div>
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 3<span class="photocard-star">★</span></p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 10. 2026 OWCS 아시아 파이널 / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/10.png" alt="2026 OWCS 아시아 파이널 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+10';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS 아시아 파이널</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
           </div>
         </article>
       </div>
