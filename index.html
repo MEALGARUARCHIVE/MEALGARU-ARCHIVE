@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MEALGARU ARCHIVE</title>
+  <!-- 눈누 상업용 무료 폰트: 프리텐다드 가변 폰트 (Pretendard Variable) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    /* 전체 초기화 및 프리텐다드 가변 폰트 기본 적용 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    }
+
+    /* 1. 흰색 바탕 배경 및 복사 방지 */
+    body {
+      background-color: #ffffff;
+      color: #111111;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    /* 3단 레이아웃: 왼쪽(프로필+소셜+갤러리버튼) / 가운데(AFFILIATION 소속) / 오른쪽(2022~2026 우승 및 1-2위 경력) */
+    .archive-container {
+      width: 100%;
+      max-width: 1440px;
+      display: grid;
+      grid-template-columns: minmax(300px, 0.95fr) minmax(360px, 1.35fr) minmax(360px, 1.3fr);
+      gap: clamp(28px, 3.2vw, 48px);
+      align-items: center;
+    }
+
+    /* ================= LEFT SECTION ================= */
+    .left-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-right: clamp(16px, 2vw, 28px);
+      border-right: 1px solid #eeeeee;
+    }
+
+    /* 2. 원형 프로필 사진 (왼쪽 가운데 정렬) */
+    .profile-wrapper {
+      width: clamp(148px, 12vw, 176px);
+      height: clamp(148px, 12vw, 176px);
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #e5e5e5;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 3. MEALGARU (대문자 / 가변 축 900) */
+    .player-name {
+      font-size: clamp(28px, 2.5vw, 38px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-variation-settings: 'wght' 900;
+      color: #111111;
+      margin-bottom: 8px;
+      white-space: nowrap;
+    }
+
+    /* 4. POSITION (대문자 / 가변 축 700) TANK (가변 축 800) */
+    .player-position {
+      font-size: clamp(14px, 1.15vw, 17px);
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      white-space: nowrap;
+    }
+
+    .pos-label {
+      font-weight: 700;
+      font-variation-settings: 'wght' 700;
+      letter-spacing: 0.04em;
+      color: #666666;
+      margin-right: 6px;
+    }
+
+    .pos-value {
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+      letter-spacing: 0.04em;
+      color: #111111;
+    }
+
+    /* 1-1 ~ 1-4 소셜 링크 영역: 2열 배치 & 둥근 박스 (가변 축 600) */
+    .social-grid {
+      width: 100%;
+      max-width: 360px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 46px;
+      gap: 6px;
+      margin-bottom: 0;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    /* 2-1. PHOTO & PHOTO CARD 갤러리 링크 영역: 소셜 링크 밑 1열 4행 규격의 둥근 박스 (가변 축 600) */
+    .gallery-grid {
+      width: 100%;
+      max-width: 360px;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: 46px;
+      gap: 6px;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 32px;
+      padding-bottom: 32px;
+      border-top: none;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      padding: 0 14px;
+      height: 46px;
+      min-width: 0;
+      background-color: #FAFAFA;
+      border: 1.5px solid #e2e2e2;
+      border-radius: 999px;
+      text-decoration: none;
+      color: #111111;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .social-card:hover {
+      border-color: #111111;
+      background-color: #fafafa;
+      transform: translateY(-1.5px);
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    .social-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-icon svg {
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+    }
+
+    .social-label {
+      font-size: clamp(12px, 0.85vw, 13.5px);
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-variation-settings: 'wght' 600;
+      color: #111111;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ================= CENTER SECTION (AFFILIATION 소속 이력) ================= */
+    .center-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8px;
+      min-width: 0;
+    }
+
+    .team-history-box {
+      width: 100%;
+      text-align: left;
+      background-color: #f9f9f9;
+      border: 1px solid #ededed;
+      border-radius: 18px;
+      padding: clamp(18px, 1.8vw, 24px);
+    }
+
+    /* AFFILIATION 제목: 대문자 / 가변 축 700 */
+    .owcs-title {
+      font-size: clamp(16px, 1.3vw, 19px);
+      line-height: 1.3;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-variation-settings: 'wght' 700;
+      color: #111111;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .team-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* 팀명 및 활동 기간: 색상 표기 없이 가변 축 650 (왼쪽 팀명 / 오른쪽 기간 양끝 정렬) */
+    .team-list li {
+      font-size: clamp(13px, 1vw, 14.5px);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      font-weight: 650;
+      font-variation-settings: 'wght' 650;
+      color: #111111;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    /* 긴 팀명이 밑으로 내려가지 않도록 한 줄 유지 */
+    .team-name-nowrap {
+      font-size: clamp(13px, 1vw, 14.5px);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 650;
+      font-variation-settings: 'wght' 650;
+    }
+
+    .team-period {
+      font-size: clamp(12px, 0.92vw, 13.5px);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      font-weight: 650;
+      font-variation-settings: 'wght' 650;
+      color: #555555;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    /* ================= RIGHT SECTION (2022~2026 우승 및 1-2위 경력) ================= */
+    .right-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: clamp(16px, 2vw, 28px);
+      border-left: 1px solid #eeeeee;
+      min-width: 0;
+    }
+
+    /* AFFILIATION과 동일한 형태의 둥근 박스 */
+    .competition-history-box {
+      width: 100%;
+      text-align: left;
+      background-color: #f9f9f9;
+      border: 1px solid #ededed;
+      border-radius: 18px;
+      padding: clamp(18px, 1.8vw, 24px);
+    }
+
+    /* COMPETITION HISTORY 제목: 대문자 / 가변 축 700 */
+    .section-heading {
+      font-size: clamp(16px, 1.3vw, 19px);
+      line-height: 1.3;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-variation-settings: 'wght' 700;
+      color: #111111;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .career-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* 항목 흰색 배경 및 테두리 제거 + 배지 양끝 정렬 (AFFILIATION 항목과 동일한 간격/정렬) */
+    .career-item {
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: clamp(13px, 1vw, 14.5px);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      font-weight: 650;
+      font-variation-settings: 'wght' 650;
+      color: #111111;
+    }
+
+    /* 대회명: 가변 축 650 */
+    .career-title {
+      font-size: clamp(13px, 1vw, 14.5px);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      font-weight: 650;
+      font-variation-settings: 'wght' 650;
+      color: #111111;
+    }
+
+    /* 결과 배지(우승 / 1-2위): 가변 축 650 + 연한 테두리 + 오른쪽 끝 정렬 */
+    .career-badge {
+      display: inline-block;
+      font-size: clamp(11.5px, 0.9vw, 12.5px);
+      line-height: 1.25;
+      letter-spacing: 0;
+      font-weight: 650;
+      font-variation-settings: 'wght' 650;
+      color: #111111;
+      background-color: transparent;
+      border: 1px solid #cccccc;
+      padding: 2px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ================= GALLERY MODAL / DEDICATED SUB-PAGES ================= */
+    .subpage-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: #ffffff;
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 48px 24px;
+    }
+
+    .subpage-overlay.active {
+      display: block;
+    }
+
+    body.standalone-view .archive-container {
+      display: none;
+    }
+
+    .subpage-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .subpage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .subpage-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .subpage-title {
+      font-size: clamp(22px, 2vw, 28px);
+      line-height: 1.2;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-variation-settings: 'wght' 900;
+      letter-spacing: -0.02em;
+      color: #111111;
+      white-space: nowrap;
+    }
+
+    .subpage-subtitle {
+      font-size: 14px;
+      line-height: 1.35;
+      letter-spacing: 0.01em;
+      font-weight: 650;
+      font-variation-settings: 'wght' 650;
+      color: #666666;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      border: 1.5px solid #e2e2e2;
+      border-radius: 999px;
+      font-size: 14px;
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+      font-weight: 700;
+      font-variation-settings: 'wght' 700;
+      text-transform: uppercase;
+      color: #111111;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      border-color: #111111;
+      background-color: #fafafa;
+    }
+
+    /* 디스코드 사진 전용 그리드 */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .photo-card-item {
+      background-color: #fafafa;
+      border: 1px solid #e8e8e8;
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .photo-card-item:hover {
+      transform: translateY(-3px);
+      border-color: #111111;
+    }
+
+    .photo-thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background-color: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .photo-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-meta {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .photo-caption {
+      font-size: 14px;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      font-variation-settings: 'wght' 700;
+      color: #111111;
+    }
+
+    .photo-tag {
+      font-size: 12px;
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+      font-weight: 650;
+      font-variation-settings: 'wght' 650;
+      color: #555555;
+      background-color: #eeeeee;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    /* 포토 카드 전용 그리드 (세로형 포카 비율 55:85) */
+    .photocard-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .photocard-item {
+      background-color: #ffffff;
+      border: 1.5px solid #e5e5e5;
+      border-radius: 20px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .photocard-item:hover {
+      transform: translateY(-4px);
+      border-color: #111111;
+    }
+
+    .photocard-frame {
+      width: 100%;
+      aspect-ratio: 55 / 85;
+      border-radius: 14px;
+      overflow: hidden;
+      background-color: #f6f6f6;
+      margin-bottom: 12px;
+    }
+
+    .photocard-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photocard-info {
+      text-align: center;
+      padding: 2px 4px 4px;
+    }
+
+    /* 포토 카드 대회명 및 팀/선수명 스타일 */
+    .photocard-title {
+      font-size: 13px;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+      color: #111111;
+      margin-bottom: 4px;
+    }
+
+    .photocard-star {
+      color: #111111;
+      margin-left: 3px;
+      font-weight: 900;
+      font-variation-settings: 'wght' 900;
+    }
+
+    .photocard-name {
+      font-size: 12px;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+      font-weight: 650;
+      font-variation-settings: 'wght' 650;
+      text-transform: uppercase;
+      color: #555555;
+    }
+
+    .photocard-empty {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      font-variation-settings: 'wght' 700;
+      color: #777777;
+      background-color: #f3f3f3;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 1120px) {
+      .archive-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        max-width: 600px;
+      }
+
+      .center-section,
+      .right-section,
+      .team-history-box,
+      .competition-history-box {
+        height: auto;
+      }
+
+      .left-section {
+        padding-right: 0;
+        border-right: none;
+        padding-bottom: 0;
+        border-bottom: none;
+        gap: 0;
+      }
+
+      .left-section .social-grid {
+        margin-bottom: 0;
+        padding-bottom: 32px;
+        border-bottom: 1px solid #eeeeee;
+      }
+
+      .left-section .gallery-grid {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 32px;
+        padding-bottom: 32px;
+        border-top: none;
+        border-bottom: 1px solid #eeeeee;
+      }
+
+      .right-section {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 32px;
+        border-top: 1px solid #eeeeee;
+      }
+    }
+
+    /* 아이폰 16 프로 등 모바일 화면 최적화 (상단 버튼 축소 및 포토카드 2열 배치) */
+    @media (max-width: 600px) {
+      .subpage-overlay {
+        padding: 28px 14px;
+      }
+
+      .subpage-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 14px;
+        margin-bottom: 20px;
+      }
+
+      .subpage-title-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        width: 100%;
+        min-width: 0;
+      }
+
+      .subpage-title {
+        font-size: 18px;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+      }
+
+      .subpage-subtitle {
+        font-size: 11px;
+        line-height: 1.3;
+        letter-spacing: 0.01em;
+      }
+
+      .back-btn {
+        padding: 7px 12px;
+        font-size: 11px;
+        line-height: 1.25;
+        letter-spacing: 0.01em;
+        gap: 4px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        align-self: flex-start;
+      }
+
+      .photocard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .photocard-item {
+        padding: 8px;
+        border-radius: 16px;
+      }
+
+      .photocard-frame {
+        border-radius: 11px;
+        margin-bottom: 8px;
+      }
+
+      .photocard-title {
+        font-size: 10px;
+        line-height: 1.35;
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+        margin-bottom: 2px;
+      }
+
+      .photocard-name {
+        font-size: 10.5px;
+        line-height: 1.35;
+        letter-spacing: 0.01em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="archive-container">
+    <!-- 1. 왼쪽 섹션: 프로필 + MEALGARU (900) + POSITION (700) TANK (800) + 소셜 링크 (600) + PHOTO / PHOTO CARD (600) -->
+    <section class="left-section">
+      <div class="profile-wrapper">
+        <!-- 깃허브 저장소 루트에 업로드한 profile.png 파일 연결 -->
+        <img
+          src="./profile.png"
+          alt="MEALGARU PROFILE"
+          class="profile-img"
+          onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><rect width=%22200%22 height=%22200%22 fill=%22%23ffffff%22/><text x=%2250%25%22 y=%2246%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2222%22 font-weight=%22bold%22 fill=%22%23222222%22>프사가</text><text x=%2250%25%22 y=%2262%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2222%22 font-weight=%22bold%22 fill=%22%23222222%22>없어요.</text></svg>';"
+        />
+      </div>
+
+      <h1 class="player-name">MEALGARU</h1>
+
+      <p class="player-position">
+        <span class="pos-label">POSITION</span>
+        <span class="pos-value">TANK</span>
+      </p>
+
+      <!-- 1-1 ~ 1-4. 소셜 링크 (대문자 / 로고 필수 / 로고 옆 텍스트 / 가변 축 600 / 둥근 박스) -->
+      <div class="social-grid">
+        <!-- 1-1. DISCORD -->
+        <a href="https://discord.com/invite/qF5ASqCtft" target="_blank" rel="noopener noreferrer" class="social-card">
+          <span class="social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
+            </svg>
+          </span>
+          <span class="social-label">DISCORD</span>
+        </a>
+
+        <!-- 1-2. CHZZK -->
+        <a href="https://chzzk.naver.com/344a931a124887597344b913957c00a7" target="_blank" rel="noopener noreferrer" class="social-card">
+          <span class="social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M13.62 2L4.8 13.45h5.82L8.35 22l10.85-11.9h-6.12L13.62 2z"/>
+            </svg>
+          </span>
+          <span class="social-label">CHZZK</span>
+        </a>
+
+        <!-- 1-3. X -->
+        <a href="https://x.com/Mealgaru_ow" target="_blank" rel="noopener noreferrer" class="social-card">
+          <span class="social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </span>
+          <span class="social-label">X</span>
+        </a>
+
+        <!-- 1-4. INSTAGRAM -->
+        <a href="https://www.instagram.com/mealgaru_ozzs/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" class="social-card">
+          <span class="social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </span>
+          <span class="social-label">INSTAGRAM</span>
+        </a>
+      </div>
+
+      <!-- 2-1. DISCORD PHOTO & MEALGARU PHOTO CARD 전용 갤러리 링크 (대문자 / 로고 필수 / 가변 축 600 / 둥근 박스 / 새 탭 열기) -->
+      <div class="gallery-grid">
+        <!-- DISCORD PHOTO: 디스코드 사진 전용 새 탭 사이트 -->
+        <a href="?view=photo" target="_blank" rel="noopener noreferrer" class="social-card">
+          <span class="social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+            </svg>
+          </span>
+          <span class="social-label">DISCORD PHOTO</span>
+        </a>
+
+        <!-- MEALGARU PHOTO CARD LIST: 포토 카드 모음집 전용 새 탭 사이트 -->
+        <a href="?view=photocard" target="_blank" rel="noopener noreferrer" class="social-card">
+          <span class="social-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
+            </svg>
+          </span>
+          <span class="social-label">MEALGARU PHOTO CARD LIST</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. 가운데 섹션: AFFILIATION (700) + 나무위키 선수 소속 이력 (색상 표기 없음, 650) -->
+    <section class="center-section">
+      <div class="team-history-box">
+        <h2 class="owcs-title">AFFILIATION</h2>
+        <ul class="team-list">
+          <li>
+            <span class="team-name-nowrap">WILL BE</span>
+            <span class="team-period">(2020.06.05 ~ 2022.11.26)</span>
+          </li>
+          <li>
+            <span class="team-name-nowrap">Sin Prisa Gaming</span>
+            <span class="team-period">(2022.11.26 ~ 2024.04.16)</span>
+          </li>
+          <li>
+            <span class="team-name-nowrap">INSOMNIA</span>
+            <span class="team-period">(2024.06.22 ~ 2025.01.10)</span>
+          </li>
+          <li>
+            <span class="team-name-nowrap">WAY</span>
+            <span class="team-period">(2025.01.14 ~ 2025.05.14)</span>
+          </li>
+          <li>
+            <span class="team-name-nowrap">All Gamers Global</span>
+            <span class="team-period">(2025.05.14 ~ 2025.08.11)</span>
+          </li>
+          <li>
+            <span class="team-name-nowrap">WAY</span>
+            <span class="team-period">(2025.08.21 ~ 2025.11.29)</span>
+          </li>
+          <li>
+            <span class="team-name-nowrap">ZETA DIVISION</span>
+            <span class="team-period">(2026.02.28 ~ )</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. 오른쪽 섹션: COMPETITION HISTORY (700) + 2022~2026년 '우승' 및 '1-2위' 항목 (650) -->
+    <section class="right-section">
+      <div class="competition-history-box">
+        <h2 class="section-heading">COMPETITION HISTORY</h2>
+        <ul class="career-list">
+          <li class="career-item">
+            <span class="career-title">TEN 2022 FPS SPECIAL</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2023 오버워치 리그 서머 스테이지 동부 오픈</span>
+            <span class="career-badge">1-2위</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">지스타컵 2025 오버워치</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2025 상하이 마스터즈 이스포츠 오버워치 부문</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2026 OWCS 코리아 스테이지 1</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2026 OWCS 아시아 스테이지 1</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2026 OWCS 코리아 스테이지 2</span>
+            <span class="career-badge">우승</span>
+          </li>
+          <li class="career-item">
+            <span class="career-title">2026 OWCS 미드시즌 챔피언십</span>
+            <span class="career-badge">우승</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= 전용 서브 사이트 1: DISCORD PHOTO (디스코드 사진 전용) ================= -->
+  <!-- ================= 전용 서브 사이트 2: MEALGARU PHOTO CARD LIST (포토 카드 모음집) ================= -->
+  <div id="photocard-page" class="subpage-overlay" aria-hidden="true">
+    <div class="subpage-inner">
+      <header class="subpage-header">
+        <div class="subpage-title-group">
+          <h2 class="subpage-title">MEALGARU PHOTO CARD LIST</h2>
+          <span class="subpage-subtitle">MEALGARU ver.</span>
+        </div>
+        <button type="button" class="back-btn" onclick="handleBackFromSubpage()">← ARCHIVE로 돌아가기</button>
+      </header>
+
+      <!-- 포토 카드 1~10번 목록 (9번은 이미지 없음) -->
+      <div class="photocard-grid">
+        <!-- 1. 2025 OWCS KOREA 스테이지 1 / WAY MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/1.png" alt="2025 OWCS KOREA 스테이지 1 WAY MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+01';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2025 OWCS KOREA 스테이지 1</p>
+            <p class="photocard-name">WAY MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 2. 2025 OWCS KOREA 스테이지 2 / WAY MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/2.png" alt="2025 OWCS KOREA 스테이지 2 WAY MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+02';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2025 OWCS KOREA 스테이지 2</p>
+            <p class="photocard-name">WAY MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 3. 2025 OWCS KOREA 스테이지 3 / WAY MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/3.png" alt="2025 OWCS KOREA 스테이지 3 WAY MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+03';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2025 OWCS KOREA 스테이지 3</p>
+            <p class="photocard-name">WAY MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 4. 2026 OWCS KOREA 스테이지 1 / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/4.png" alt="2026 OWCS KOREA 스테이지 1 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+04';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 1</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 5. 2026 OWCS KOREA 스테이지 1 / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/5.png" alt="2026 OWCS KOREA 스테이지 1 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+05';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 1</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 6. 2026 OWCS KOREA 스테이지 2 / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/6.png" alt="2026 OWCS KOREA 스테이지 2 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+06';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 2</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 7. 2026 OWCS KOREA 스테이지 2 / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/7.png" alt="2026 OWCS KOREA 스테이지 2 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+07';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 2</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 8. 2026 OWCS KOREA 스테이지 3 / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/8.png" alt="2026 OWCS KOREA 스테이지 3 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+08';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 3</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 9. 2026 OWCS KOREA 스테이지 3 / ZETA DIVISION MEALGARU (이미지 없음) -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <div class="photocard-empty">이미지 없음</div>
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS KOREA 스테이지 3</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+
+        <!-- 10. 2026 OWCS 아시아 파이널 / ZETA DIVISION MEALGARU -->
+        <article class="photocard-item">
+          <div class="photocard-frame">
+            <img src="./photocards/10.png" alt="2026 OWCS 아시아 파이널 ZETA DIVISION MEALGARU" onerror="this.onerror=null; this.src='https://placehold.co/550x850/f5f5f5/222222?text=PHOTO+CARD+10';" />
+          </div>
+          <div class="photocard-info">
+            <p class="photocard-title">2026 OWCS 아시아 파이널</p>
+            <p class="photocard-name">ZETA DIVISION MEALGARU</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // PHOTO 및 PHOTO CARD 전용 새 탭 페이지 렌더링 제어
+    function renderViewByQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const view = params.get('view');
+
+      document.querySelectorAll('.subpage-overlay').forEach((el) => {
+        el.classList.remove('active');
+        el.setAttribute('aria-hidden', 'true');
+      });
+
+      if (view === 'photo') {
+        const photoEl = document.getElementById('photo-page');
+        if (photoEl) {
+          document.body.classList.add('standalone-view');
+          photoEl.classList.add('active');
+          photoEl.setAttribute('aria-hidden', 'false');
+          document.title = 'DISCORD PHOTO - MEALGARU ARCHIVE';
+        }
+      } else if (view === 'photocard') {
+        const cardEl = document.getElementById('photocard-page');
+        if (cardEl) {
+          document.body.classList.add('standalone-view');
+          cardEl.classList.add('active');
+          cardEl.setAttribute('aria-hidden', 'false');
+          document.title = 'MEALGARU PHOTO CARD LIST - MEALGARU ARCHIVE';
+        }
+      } else {
+        document.body.classList.remove('standalone-view');
+        document.title = 'MEALGARU ARCHIVE';
+      }
+    }
+
+    function handleBackFromSubpage() {
+      if (window.opener && !window.opener.closed) {
+        window.close();
+      } else {
+        window.location.href = window.location.pathname;
+      }
+    }
+
+    // 페이지 내 텍스트 복사, 드래그, 우클릭 및 복사 단축키 차단
+    document.addEventListener('copy', (e) => e.preventDefault());
+    document.addEventListener('cut', (e) => e.preventDefault());
+    document.addEventListener('selectstart', (e) => e.preventDefault());
+    document.addEventListener('dragstart', (e) => e.preventDefault());
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && ['c', 'x', 'a', 'u', 's'].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', renderViewByQuery);
+  </script>
+</body>
+</html>
